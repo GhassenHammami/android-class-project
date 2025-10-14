@@ -23,7 +23,6 @@ public class JeuLinearActivity extends AppCompatActivity {
     private EditText editNumberInput;
     private TextView textAttemptNumber;
     private TextView textMessage;
-
     private int attemptCount = 1;
     private int randomNumber;
 
