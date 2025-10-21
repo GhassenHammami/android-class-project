@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">project1</string>
+    <string name="attempt_text">Tentative %1$d/10</string>
+</resources>
