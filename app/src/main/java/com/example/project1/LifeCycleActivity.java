@@ -1,9 +1,14 @@
 package com.example.project1;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -12,12 +17,35 @@ import androidx.core.view.WindowInsetsCompat;
 public class LifeCycleActivity extends AppCompatActivity {
     private static final String TAG = "LifeCycleActivity";
 
+    private Button btnIncrement;
+    private TextView textCount;
+    private int count = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_life_cycle);
         Log.d(TAG, "onCreate: Activity is in onCreate state.");
+
+        btnIncrement = findViewById(R.id.lifeCycleIncrementBtn);
+        textCount = findViewById(R.id.lifeCycleCountTxt);
+
+        if (savedInstanceState!=null && savedInstanceState.containsKey("count"))
+            count = savedInstanceState.getInt("count");
+
+        textCount.setText(String.valueOf(count));
+
+        btnIncrement.setOnClickListener(v -> {
+            count++;
+            textCount.setText(String.valueOf(count));
+        });
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("count", count);
     }
 
     @Override

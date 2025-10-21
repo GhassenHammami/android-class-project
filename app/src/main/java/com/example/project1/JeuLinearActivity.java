@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -38,7 +39,27 @@ public class JeuLinearActivity extends AppCompatActivity {
         textAttemptNumber = findViewById(R.id.txtAttempt);
         textMessage = findViewById(R.id.txtMessage);
 
-        initializeGame();
+        if (savedInstanceState!=null) {
+            if (savedInstanceState.containsKey("attemptCount")) {
+                attemptCount = savedInstanceState.getInt("attemptCount");
+                String attemptText = getString(R.string.attempt_text, attemptCount);
+                textAttemptNumber.setText(attemptText);
+                if (attemptCount >= 10) {
+                    btnValidate.setText("Reset");
+                }
+            }
+            if (savedInstanceState.containsKey("randomNumber"))
+                randomNumber = savedInstanceState.getInt("randomNumber");
+
+            if (savedInstanceState.containsKey("message") && savedInstanceState.containsKey("messageColor")) {
+                String savedMessage = savedInstanceState.getString("message");
+                int savedMessageColor = savedInstanceState.getInt("messageColor");
+                textMessage.setVisibility(View.VISIBLE);
+                textMessage.setText(savedMessage);
+                textMessage.setTextColor(savedMessageColor);
+            } else textMessage.setVisibility(View.INVISIBLE);
+
+        } else initializeGame();
 
         btnValidate.setOnClickListener(v -> {
             if (attemptCount >= 10)
@@ -82,6 +103,22 @@ public class JeuLinearActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("attemptCount", attemptCount);
+        if (randomNumber!= 0)
+            outState.putInt("randomNumber", randomNumber);
+
+        if (textMessage.getVisibility() == View.VISIBLE) {
+            String message = textMessage.getText().toString();
+            int messageColor = textMessage.getCurrentTextColor();
+
+            outState.putString("message", message);
+            outState.putInt("messageColor", messageColor);
+        }
     }
 
     private void initializeGame() {
