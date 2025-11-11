@@ -12,13 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project1">
         <activity
+            android:name=".CountryListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DefaultListViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CourseSelectionActivity"
+            android:exported="false" />
+        <activity
             android:name=".JeuLinearActivity"
             android:exported="false" />
         <activity
             android:name=".LifeCycleActivity"
             android:exported="false" />
         <activity
-            android:name=".CourseSelectionActivity"
+            android:name=".CustomListViewActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
