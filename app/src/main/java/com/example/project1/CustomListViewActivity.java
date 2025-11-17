@@ -31,37 +31,37 @@ public class CustomListViewActivity extends AppCompatActivity {
         HashMap<String, String> software;
 
         software = new HashMap<>();
-        software.put("icon", "word");
+        software.put("icon", String.valueOf(R.drawable.software_word));
         software.put("title", "Word");
         software.put("description", "Traitement de Texte, suite Microsoft");
         dataList.add(software);
 
         software = new HashMap<>();
-        software.put("icon", "excel");
+        software.put("icon", String.valueOf(R.drawable.software_excel));
         software.put("title", "Excel");
         software.put("description", "Tableur de la suite Microsoft");
         dataList.add(software);
 
         software = new HashMap<>();
-        software.put("icon", "winrar");
+        software.put("icon", String.valueOf(R.drawable.software_winrar));
         software.put("title", "WinRAR");
         software.put("description", "Logiciel de compression");
         dataList.add(software);
 
         software = new HashMap<>();
-        software.put("icon", "kaspersky");
+        software.put("icon", String.valueOf(R.drawable.software_kis));
         software.put("title", "Kaspersky");
         software.put("description", "Antivirus");
         dataList.add(software);
 
         software = new HashMap<>();
-        software.put("icon", "sublime");
+        software.put("icon", String.valueOf(R.drawable.software_sublime));
         software.put("title", "Sublime Text");
         software.put("description", "Éditeur de texte");
         dataList.add(software);
 
         software = new HashMap<>();
-        software.put("icon", "utorrent");
+        software.put("icon", String.valueOf(R.drawable.software_utorrent));
         software.put("title", "uTorrent");
         software.put("description", "Client de téléchargement torrent");
         dataList.add(software);
@@ -74,6 +74,19 @@ public class CustomListViewActivity extends AppCompatActivity {
                 new int[]{R.id.customListIcon, R.id.customListTitle, R.id.customListDescription}
         );
 
+        softwareAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
+            @Override
+            public boolean setViewValue(View view, Object data, String textRepresentation) {
+                if (view.getId() == R.id.customListIcon) {
+                    int resId = Integer.parseInt((String) data);
+                    ((android.widget.ImageView) view).setImageResource(resId);
+                    return true;
+                }
+                return false;
+            }
+        });
+
         customListView.setAdapter(softwareAdapter);
+
     }
 }
