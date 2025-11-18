@@ -12,6 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project1">
         <activity
+            android:name=".CalculateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CalculatorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SimpleExplicitIntentReturnActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CustomListViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".CountryListActivity"
             android:exported="false" />
         <activity
@@ -27,7 +39,7 @@
             android:name=".LifeCycleActivity"
             android:exported="false" />
         <activity
-            android:name=".CustomListViewActivity"
+            android:name=".ListIntentActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
