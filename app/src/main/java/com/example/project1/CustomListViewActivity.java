@@ -74,18 +74,6 @@ public class CustomListViewActivity extends AppCompatActivity {
                 new int[]{R.id.customListIcon, R.id.customListTitle, R.id.customListDescription}
         );
 
-        softwareAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
-            @Override
-            public boolean setViewValue(View view, Object data, String textRepresentation) {
-                if (view.getId() == R.id.customListIcon) {
-                    int resId = Integer.parseInt((String) data);
-                    ((android.widget.ImageView) view).setImageResource(resId);
-                    return true;
-                }
-                return false;
-            }
-        });
-
         customListView.setAdapter(softwareAdapter);
 
     }
