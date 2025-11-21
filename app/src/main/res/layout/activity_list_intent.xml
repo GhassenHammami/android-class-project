@@ -53,7 +53,7 @@
             android:layout_marginBottom="16dp"
             android:text="CALCULATRICE"
             android:textSize="16sp"
-            app:icon="@drawable/calculatrice"
+            app:icon="@drawable/calculator"
             app:iconGravity="textStart"
             app:iconSize="32dp"
             app:iconTint="@color/white" />
