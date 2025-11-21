@@ -27,14 +27,21 @@ public class CalculatorActivity extends AppCompatActivity {
         receiveResultBtn = findViewById(R.id.calculatorBtnGetResult);
 
         receiveResultBtn.setOnClickListener(v -> {
-            String valueA = editTextA.getText().toString();
-            String valueB = editTextB.getText().toString();
+            String valueA = editTextA.getText().toString().trim();
+            String valueB = editTextB.getText().toString().trim();
+
+            if (valueA.isEmpty() || valueB.isEmpty()) {
+                if (valueA.isEmpty()) editTextA.setError("Enter a number");
+                if (valueB.isEmpty()) editTextB.setError("Enter a number");
+                return;
+            }
 
             Intent intent = new Intent(CalculatorActivity.this, CalculateActivity.class);
             intent.putExtra("EXTRA_VALUE_A", valueA);
             intent.putExtra("EXTRA_VALUE_B", valueB);
             startActivity(intent);
         });
+
 
     }
 }
