@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class CalculateActivity extends AppCompatActivity {
 
-    TextView textA, textB;
+    TextView textA, textB, textSum;
     Button sendResultBtn;
 
     @Override
@@ -22,32 +22,37 @@ public class CalculateActivity extends AppCompatActivity {
 
         textA = findViewById(R.id.calculateTextA);
         textB = findViewById(R.id.calculateTextB);
+        textSum = findViewById(R.id.calculateTextSum);
         sendResultBtn = findViewById(R.id.calculateBtnSendResult);
 
         Intent intent = getIntent();
         String valueA = intent.getStringExtra("EXTRA_VALUE_A");
         String valueB = intent.getStringExtra("EXTRA_VALUE_B");
 
-        textA.setText(valueA);
-        textB.setText(valueB);
+        if (valueA != null && valueB != null && !valueA.isEmpty() && !valueB.isEmpty()) {
+            double a = Double.parseDouble(valueA);
+            double b = Double.parseDouble(valueB);
+            double result = a + b;
 
-        sendResultBtn.setOnClickListener(v -> {
-            if (valueA != null && valueB != null && !valueA.isEmpty() && !valueB.isEmpty()) {
-                try {
-                    double a = Double.parseDouble(valueA);
-                    double b = Double.parseDouble(valueB);
-                    double result = a + b;
-
-                    Intent resultIntent = new Intent();
-                    resultIntent.putExtra("RESULT", result);
-                    setResult(RESULT_OK, resultIntent);
-                    finish();
-                } catch (NumberFormatException e) {
-                    Toast.makeText(this, "Invalid number format", Toast.LENGTH_SHORT).show();
-                }
+            textA.setText(valueA);
+            textB.setText(valueB);
+            if (result == (int) result) {
+                textSum.setText(String.valueOf((int) result));
             } else {
-                Toast.makeText(this, "Values cannot be empty", Toast.LENGTH_SHORT).show();
+                textSum.setText(String.valueOf(result));
             }
-        });
+
+            sendResultBtn.setOnClickListener(v -> {
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("RESULT", result);
+                setResult(RESULT_OK, resultIntent);
+                finish();
+            });
+
+        } else {
+            Toast.makeText(this, "Invalid input received", Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
+
 }

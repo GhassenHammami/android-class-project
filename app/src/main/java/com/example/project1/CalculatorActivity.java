@@ -4,17 +4,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class CalculatorActivity extends AppCompatActivity {
 
     EditText editTextA, editTextB;
     Button receiveResultBtn;
+    TextView resultText;
+    ActivityResultLauncher<Intent> calculateLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,25 @@ public class CalculatorActivity extends AppCompatActivity {
         editTextA = findViewById(R.id.calculatorInputA);
         editTextB = findViewById(R.id.calculatorInputB);
         receiveResultBtn = findViewById(R.id.calculatorBtnGetResult);
+        resultText = findViewById(R.id.calculatorResultText);
+
+        calculateLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        double sum = result.getData().getDoubleExtra("RESULT", 0);
+
+                        String display;
+                        if (sum == (int) sum) {
+                            display = "Result = " + (int) sum;
+                        } else {
+                            display = "Result = " + sum;
+                        }
+
+                        resultText.setText(display);
+                    }
+                }
+        );
 
         receiveResultBtn.setOnClickListener(v -> {
             String valueA = editTextA.getText().toString().trim();
@@ -39,9 +62,7 @@ public class CalculatorActivity extends AppCompatActivity {
             Intent intent = new Intent(CalculatorActivity.this, CalculateActivity.class);
             intent.putExtra("EXTRA_VALUE_A", valueA);
             intent.putExtra("EXTRA_VALUE_B", valueB);
-            startActivity(intent);
+            calculateLauncher.launch(intent);
         });
-
-
     }
 }
