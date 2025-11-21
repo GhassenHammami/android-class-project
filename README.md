@@ -4,8 +4,7 @@
 
 - [Atelier 2 – Création d'un premier projet Android](#atelier-2--création-dun-premier-projet-android)
 - [Atelier 3 – Les layouts Android](#atelier-3--les-layouts-android)
-- [Atelier 4 – *À venir*](#atelier-4--à-venir)
-- [Atelier 5 – *À venir*](#atelier-5--à-venir)
+- [Atelier 7 – Les Intents Android](#atelier-7--les-intents-android)
 
 ---
 
@@ -223,15 +222,158 @@ Cette connaissance des layouts est essentielle pour créer des interfaces utilis
 
 ---
 
-# Atelier 4 – *À venir*
+# Atelier 7 – Les Intents Android
 
-*Contenu à venir - Placeholder pour l'intégration d'APIs*
+## Table des matières
+- [Objectif](#objectif-2)
+- [Notions théoriques](#notions-théoriques)
+- [Intents explicites](#intents-explicites)
+- [Intents implicites](#intents-implicites)
+- [Activités pratiques](#activités-pratiques)
+- [Bilan](#bilan-2)
 
 ---
 
-# Atelier 5 – *À venir*
+## Objectif
 
-*Contenu à venir - Placeholder pour l'optimisation et le déploiement*
+L'objectif de cet atelier était de maîtriser l'utilisation des **Intents**, aussi bien explicites qu'implicites, afin de permettre la communication entre différentes activités d'une application Android ou avec d'autres applications du système.
+
+---
+
+## Notions théoriques
+
+Un **Intent** est un objet Android utilisé pour :
+
+- démarrer une nouvelle activité,
+- lancer un service,
+- transmettre des données,
+- envoyer un broadcast,
+- ou encore déléguer une action à une autre application (ex : ouvrir une page web).
+
+Un Intent peut contenir :
+
+- **Action** (ex : `ACTION_VIEW`, `ACTION_SEND`),
+- **Data** (souvent sous forme d'URI),
+- **Category** (ex : `CATEGORY_LAUNCHER`),
+- **Extras** (pour transmettre des données sous forme clé-valeur),
+- **Type MIME**,
+- **Nom du composant** (dans le cas des Intents explicites).
+
+---
+
+## Intents explicites
+
+Les **intents explicites** sont utilisés pour cibler une activité précise de l'application à l'aide du nom de la classe Java.
+
+```java
+Intent intent = new Intent(ActivityCourante.this, ActiviteCible.class);
+startActivity(intent);
+```
+
+Ils sont surtout utilisés pour la **navigation interne** entre activités d'une même application.
+
+---
+
+## Intents implicites
+
+Les **intents implicites** délèguent l'action à une application capable de la gérer.  
+On ne précise pas la classe cible, uniquement l'action et les données.
+
+```java
+Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+startActivity(intent);
+```
+
+Le système Android sélectionne alors automatiquement l'application appropriée.
+
+---
+
+## Activités pratiques
+
+### 🔹 1. Création de ListeIntentActivity
+
+Une nouvelle activité a été créée pour regrouper et tester plusieurs types d'intents.  
+L'interface contient plusieurs boutons, dont certains utilisent `MaterialButton` pour ajouter une icône.
+
+**Exemple :**
+
+```xml
+<com.google.android.material.button.MaterialButton
+    android:id="@+id/btn_soumettre"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Soumettre le choix de parcours"
+    app:icon="@drawable/fb"
+    android:textSize="16dp"
+    app:iconGravity="textStart"
+    app:iconSize="32dp"
+    app:iconTint="@color/white" />
+```
+
+### 🔹 2. Passage entre deux activités : IntentSimpleActivity → IntentSimpleRetourActivity
+
+Deux interfaces ont été créées pour illustrer :
+
+- l'**envoi de données** d'une activité à une autre,
+- puis le **retour vers l'activité initiale** avec un résultat ou un message.
+
+### 🔹 3. Ajout d'un bouton Calculatrice dans l'activité principale
+
+Ce bouton ouvre une activité **CalculatriceActivity** où l'utilisateur saisit deux nombres dans des `EditText`.
+
+Une fois validés, ces valeurs sont envoyées vers une nouvelle activité **CalculerActivity**, qui :
+
+- récupère les deux valeurs,
+- effectue un calcul,
+- retourne le résultat à l'activité Calculatrice,
+- qui l'affiche dans un `TextView`.
+
+### 🔹 4. Intent Implicite – Web, Téléphone, Contacts
+
+Une nouvelle activité **IntentImpliciteActivity** regroupe plusieurs actions :
+
+#### ✔ Ouvrir un site web
+
+Un bouton "Visiter le site web" ouvre :  
+`https://www.polytecsousse.tn/`
+
+#### ✔ Composer un numéro
+
+Une zone de texte permet de saisir un numéro.  
+Le bouton "Composer le N°" :
+
+- vérifie que le champ n'est pas vide,
+- lance l'application Téléphone avec le numéro saisi.
+
+#### ✔ Afficher le répertoire
+
+Un bouton permet d'ouvrir la liste de contacts enregistrés sur le smartphone.
+
+#### ✔ Choisir un contact
+
+Un bouton ouvre le sélecteur de contacts et retourne le contact choisi sous forme de toast.
+
+### 🔹 5. Navigation générale
+
+Deux boutons supplémentaires ont été ajoutés :
+
+- **Retour** → revenir à l'Activité principale
+- **Fermer** → quitter l'application
+
+---
+
+## Bilan
+
+Cet atelier a permis de :
+
+- comprendre le fonctionnement et la structure d'un Intent,
+- apprendre à utiliser les Intents explicites pour naviguer entre activités,
+- manipuler les Intents implicites pour interagir avec d'autres applications (web, téléphone, contacts),
+- passer des données entre activités,
+- gérer des retours de résultats,
+- et enrichir l'interface avec des boutons Material Design.
+
+Les Intents sont essentiels dans Android, car ils permettent la communication interne et externe entre les composants de l'application.
 
 ---
 
