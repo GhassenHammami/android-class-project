@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class CalculatorActivity extends AppCompatActivity {
 
     EditText editTextA, editTextB;
-    Button receiveResultBtn;
+    Button receiveResultBtn, closeBtn;
     TextView resultText;
     ActivityResultLauncher<Intent> calculateLauncher;
 
@@ -29,6 +29,7 @@ public class CalculatorActivity extends AppCompatActivity {
         editTextA = findViewById(R.id.calculatorInputA);
         editTextB = findViewById(R.id.calculatorInputB);
         receiveResultBtn = findViewById(R.id.calculatorBtnGetResult);
+        closeBtn = findViewById(R.id.calculatorBtnClose);
         resultText = findViewById(R.id.calculatorResultText);
 
         calculateLauncher = registerForActivityResult(
@@ -63,6 +64,10 @@ public class CalculatorActivity extends AppCompatActivity {
             intent.putExtra("EXTRA_VALUE_A", valueA);
             intent.putExtra("EXTRA_VALUE_B", valueB);
             calculateLauncher.launch(intent);
+        });
+
+        closeBtn.setOnClickListener(v -> {
+            finish();
         });
     }
 }
