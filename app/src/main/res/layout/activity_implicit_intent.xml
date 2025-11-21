@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/simpleExplicitIntentReturnHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#6750A3"
+        android:gravity="center_vertical"
+        android:paddingVertical="13dp"
+        android:paddingStart="16dp"
+        android:text="TP 7: Intents"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/implicitIntentMainTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="20dp"
+            android:text="Implicit Intent"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/implicitIntentWebBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="10dp"
+            android:text="Visiter le site web"
+            android:textSize="16sp"
+            app:icon="@drawable/web"
+            app:iconGravity="textStart"
+            app:iconSize="32dp"
+            app:iconTint="@color/white" />
+
+        <TextView
+            android:id="@+id/implicitIntentPhoneTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="20dp"
+            android:text="Phone Number"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/implicitIntentDialBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="10dp"
+            android:text="Dial Number"
+            android:textSize="16sp"
+            app:icon="@drawable/phone"
+            app:iconGravity="textStart"
+            app:iconSize="32dp"
+            app:iconTint="@color/white" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/implicitIntentShowContactsBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="10dp"
+            android:text="Show Contacts"
+            android:textSize="16sp"
+            app:icon="@drawable/contacts"
+            app:iconGravity="textStart"
+            app:iconSize="32dp"
+            app:iconTint="@color/white" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/implicitIntentSelectContactsBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="10dp"
+            android:text="Choose Contact"
+            android:textSize="16sp"
+            app:icon="@drawable/select"
+            app:iconGravity="textStart"
+            app:iconSize="32dp"
+            app:iconTint="@color/white" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/implicitIntentBtnClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="Close"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</LinearLayout>

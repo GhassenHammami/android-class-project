@@ -26,7 +26,8 @@ public class ListIntentActivity extends AppCompatActivity {
         });
 
         implicitIntentBtn.setOnClickListener(v -> {
-
+            Intent intent = new Intent(ListIntentActivity.this, ImplicitIntentActivity.class);
+            startActivity(intent);
         });
 
         calculatorBtn.setOnClickListener(v -> {
