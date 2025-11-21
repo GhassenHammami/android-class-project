@@ -35,7 +35,7 @@ public class ListIntentActivity extends AppCompatActivity {
         });
 
         closeBtn.setOnClickListener(v -> {
-
+            finish();
         });
     }
 }
