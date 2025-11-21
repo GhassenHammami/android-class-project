@@ -18,7 +18,7 @@
             android:name=".CalculatorActivity"
             android:exported="false" />
         <activity
-            android:name=".SimpleExplicitIntentReturnActivity"
+            android:name=".SimpleExplicitIntentActivity"
             android:exported="false" />
         <activity
             android:name=".CustomListViewActivity"
